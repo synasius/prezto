@@ -5,6 +5,8 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+fpath=("$HOME/.zprezto/other" $fpath)
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -36,3 +38,6 @@ if [ -f '/home/sinasio/local/google-cloud-sdk/completion.zsh.inc' ]; then source
 
 # Enable completion for kubectl
 source <(kubectl completion zsh)
+
+# Enable completion for kubectl
+source <(pipenv --completion)
