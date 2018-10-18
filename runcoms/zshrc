@@ -31,13 +31,21 @@ if [[ -s "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]]; then
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/sinasio/local/google-cloud-sdk/path.zsh.inc' ]; then source '/home/sinasio/local/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/sinasio/local/google-cloud-sdk/path.zsh.inc' ]; then
+    source '/home/sinasio/local/google-cloud-sdk/path.zsh.inc';
+fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/sinasio/local/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/sinasio/local/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/home/sinasio/local/google-cloud-sdk/completion.zsh.inc' ]; then
+    source '/home/sinasio/local/google-cloud-sdk/completion.zsh.inc';
+fi
 
 # Enable completion for kubectl
-source <(kubectl completion zsh)
+if (( $+commands[kubectl] )); then
+    source <(kubectl completion zsh)
+fi
 
 # Enable completion for kubectl
-source <(pipenv --completion)
+if (( $+commands[pipenv] )); then
+    source <(pipenv --completion)
+fi
