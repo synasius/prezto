@@ -37,3 +37,7 @@ fi
 #if (( $+commands[pipenv] )); then
     #eval "$(pipenv --completion)"
 #fi
+
+if [ -f "${HOME}/.zsh_plugins.sh" ]; then
+    source ${HOME}/.zsh_plugins.sh
+fi
