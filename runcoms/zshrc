@@ -41,3 +41,19 @@ fi
 if [ -f "${HOME}/.zsh_plugins.sh" ]; then
     source ${HOME}/.zsh_plugins.sh
 fi
+
+
+workon-ionic() {
+    nvm use default
+    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+    export PATH="$HOME/Apps/Android/Sdk/tools:$HOME/Apps/Android/Sdk/platform-tools:$PATH"
+    export PATH="/opt/gradle/gradle-5.6.2/bin:$PATH"
+    export PATH="$HOME/Apps/Android/Sdk/ndk-bundle:$PATH"
+}
+
+couscous-update-tag() {
+    current_version=${1:?"Specify current version"}
+    next_version=${2:?"Specify next version"}
+    echo "Upgrade tags from ${current_version} to ${next_version}"
+    rg -l ${current_version} | xargs sed -i "s/${current_version}/${next_version}/g"
+}
