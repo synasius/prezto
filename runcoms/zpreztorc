@@ -32,6 +32,8 @@ zstyle ':prezto:*:*' color 'yes'
 # The order matters.
 # TODO: node module is slow... we could replace it with a faster version
 zstyle ':prezto:load' pmodule \
+  'android' \
+  'gopass' \
   'environment' \
   'terminal' \
   'editor' \

@@ -1,0 +1,59 @@
+_android-images-info() {
+    # shellcheck disable=SC2059
+    printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+_android-process-image() {
+    original=${1:?"original image must be specified"}
+    destination=${2:?"destination image must be specified"}
+    size=${3:?"size must be specified"}
+    quality=${4:?"quality must be specified"}
+    colors=${5:?"colors must be specified"}
+
+    convert -resize ${size}x ${original} ${destination}
+
+    pngquant ${colors} --strip --quality ${quality} --force --ext .png ${destination}
+    optipng -strip all ${destination} > /dev/null
+}
+
+android-images() {
+    # We need at least the file name
+    if [ "$#" -lt 2 ]; then
+      echo "Usage: $0 FILE baseline_resolution" >&2
+      return
+    fi
+
+    local curdir=$(pwd -P)
+    local outdir=${curdir}/processed
+
+    # Create the output directory
+    mkdir -p ${outdir}
+
+    local inputfile=$1
+    local baselinewidth=$2
+    local outputfilename=$(basename "${inputfile%.*}")
+
+    _android-images-info "Processing ${inputfile}"
+
+    mkdir -p ${outdir}/drawable-ldpi
+    mkdir -p ${outdir}/drawable-mdpi
+    mkdir -p ${outdir}/drawable-hdpi
+    mkdir -p ${outdir}/drawable-xhdpi
+    mkdir -p ${outdir}/drawable-xxhdpi
+    mkdir -p ${outdir}/drawable-xxxhdpi
+
+    declare -i size=$(( baselinewidth*0.75 ))
+    _android-process-image ${inputfile} ${outdir}/drawable-ldpi/${outputfilename}.png ${size} 50-70 256
+    declare -i size=$(( baselinewidth*1 ))
+    _android-process-image ${inputfile} ${outdir}/drawable-mdpi/${outputfilename}.png ${size} 50-70 256
+    declare -i size=$(( baselinewidth*1.5 ))
+    _android-process-image ${inputfile} ${outdir}/drawable-hdpi/${outputfilename}.png ${size} 50-70 256
+    declare -i size=$(( baselinewidth*2 ))
+    _android-process-image ${inputfile} ${outdir}/drawable-xhdpi/${outputfilename}.png ${size} 50-70 256
+    declare -i size=$(( baselinewidth*3 ))
+    _android-process-image ${inputfile} ${outdir}/drawable-xxhdpi/${outputfilename}.png ${size} 50-70 256
+    declare -i size=$(( baselinewidth*4 ))
+    _android-process-image ${inputfile} ${outdir}/drawable-xxxhdpi/${outputfilename}.png ${size} 50-70 256
+}
+
+android-images "$@"

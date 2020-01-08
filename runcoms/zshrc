@@ -5,8 +5,6 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-fpath=("$HOME/.zprezto/other" $fpath)
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -45,15 +43,19 @@ fi
 
 workon-ionic() {
     nvm use default
-    export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-    export PATH="$HOME/Apps/Android/Sdk/tools:$HOME/Apps/Android/Sdk/platform-tools:$PATH"
-    export PATH="/opt/gradle/gradle-5.6.2/bin:$PATH"
-    export PATH="$HOME/Apps/Android/Sdk/ndk-bundle:$PATH"
+
+    local STUDIO_HOME="$HOME/Apps/android-studio"
+    local ANDROID_SDK_HOME="$HOME/Apps/Android/Sdk"
+    export JAVA_HOME="$STUDIO_HOME/jre"
+    export PATH="$STUDIO_HOME/bin:$PATH"
+    export PATH="$ANDROID_SDK_HOME/tools:$PATH"
+    export PATH="$ANDROID_SDK_HOME/platform-tools:$PATH"
+    export PATH="/opt/gradle/gradle-6.0.1/bin:$PATH"
 }
 
 couscous-update-tag() {
-    current_version=${1:?"Specify current version"}
-    next_version=${2:?"Specify next version"}
+    local current_version=${1:?"Specify current version"}
+    local next_version=${2:?"Specify next version"}
     echo "Upgrade tags from ${current_version} to ${next_version}"
     rg -l ${current_version} | xargs sed -i "s/${current_version}/${next_version}/g"
 }
