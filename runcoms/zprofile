@@ -46,6 +46,7 @@ path=(
   $HOME/Apps/Qt/Tools/QtCreator/bin
   $HOME/.yarn/bin
   $HOME/.cargo/bin
+  $HOME/.poetry/bin
   $HOME/.local/bin
   /usr/local/{bin,sbin}
   $path

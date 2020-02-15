@@ -30,7 +30,7 @@ if (( $+commands[kubectl] )); then
     source <(kubectl completion zsh)
 fi
 
-# Enable completion for kubectl
+# Enable completion for pipenv
 # FIXME: disabled because it is SUPER SLOW!!
 #if (( $+commands[pipenv] )); then
     #eval "$(pipenv --completion)"
