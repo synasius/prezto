@@ -44,8 +44,8 @@ fi
 workon-ionic() {
     nvm use default
 
-    local STUDIO_HOME="$HOME/Apps/android-studio"
-    local ANDROID_SDK_HOME="$HOME/Apps/Android/Sdk"
+    local STUDIO_HOME="$HOME/Applications/android-studio"
+    local ANDROID_SDK_HOME="$HOME/Applications/Android/Sdk"
     export JAVA_HOME="$STUDIO_HOME/jre"
     export PATH="$STUDIO_HOME/bin:$PATH"
     export PATH="$ANDROID_SDK_HOME/tools:$PATH"
