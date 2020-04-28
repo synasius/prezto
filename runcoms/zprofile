@@ -50,6 +50,7 @@ path=(
   $HOME/.cargo/bin
   $HOME/.poetry/bin
   $HOME/.local/bin
+  $HOME/.pyenv/bin
   /usr/local/{bin,sbin}
   $path
 )
