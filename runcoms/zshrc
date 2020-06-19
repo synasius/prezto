@@ -35,6 +35,9 @@ if (( $+commands[pyenv] )); then
     eval "$(pyenv init -)"
 fi
 
+if (( $+commands[starship] )); then
+    eval "$(starship init zsh)"
+fi
 
 workon-ionic() {
     nvm use default
