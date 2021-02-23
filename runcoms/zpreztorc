@@ -34,7 +34,7 @@ zstyle ':prezto:*:*' color 'yes'
 zstyle ':prezto:load' pmodule \
   'android' \
   'gopass' \
-  'poetry' \
+  'helm' \
   'environment' \
   'terminal' \
   'editor' \
